@@ -11,8 +11,9 @@ import SwiftUI
 struct TrekrApp: App {
     var body: some Scene {
         WindowGroup {
+            //'NavigationView' is how we make a navigation bar at the top!
             NavigationView {
-                ContentView()
+                ContentView(location: Locations().primary)
             }
         }
     }

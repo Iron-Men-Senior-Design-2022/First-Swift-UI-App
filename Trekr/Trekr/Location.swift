@@ -7,13 +7,18 @@
 
 import Foundation
 
-struct Location {
+//A 'struct' is a data holding device. It can be instantiated later. This one is 'Decodable' so that it can be read from a json.
+struct Location: Decodable {
     let id: Int
     let name: String
     let country: String
     let description: String
+    let more: String
     let latitude: Double
     let longitude: Double
     let heroPicture: String
     let advisory: String
+    
+    //The example is a 'static' value because it should only really take up one place in memory, as a reference point for all instantiations of the 'struct'. It is shared between them.
+    static let example = Location(id: 1, name: "Great Smokey Mountains", country: "United States", description: "A great place to visit.", more:"More text here...", latitude: 35.6532, longitude: -83.5070, heroPicture: "smokies", advisory: "Beware of the bears!")
 }
