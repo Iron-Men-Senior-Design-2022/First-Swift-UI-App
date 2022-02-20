@@ -18,16 +18,7 @@ struct TrekrApp: App {
             //Add a tab to the bottom for universal use!
             TabView {
                 //'NavigationView' is how we make a navigation bar at the top!
-                NavigationView {
-                    //An instance of our content view!
-                    ContentView(location: locations.primary)
-                }
-                .tabItem {
-                    Image(systemName: "airplane.circle.fill")
-                    Text("Discover")
-                }
-                
-                //This allows us to create a secondary navigationview accessible through the tabview
+                //This one allows us to create a 'navigationview' accessible through the tabview
                 NavigationView {
                     //An instance of our world view!
                     WorldView()
@@ -35,6 +26,15 @@ struct TrekrApp: App {
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Locations")
+                }
+                
+                //A NavigationView for the tips
+                NavigationView {
+                    TipsView()
+                }
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Tips")
                 }
             }
             .environmentObject(locations) //This allows the object to be recognized by the enclosing environment.

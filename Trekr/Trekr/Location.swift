@@ -9,6 +9,7 @@ import Foundation
 
 //A 'struct' is a data holding device. It can be instantiated later. This one is 'Decodable' so that it can be read from a json. It is also 'Identifiable' so that SwiftUI can use it in a loop and know that different onesa re unique.
 struct Location: Decodable, Identifiable {
+    //The Property 'id' is recognized by swift for identifiable!
     let id: Int
     let name: String
     let country: String

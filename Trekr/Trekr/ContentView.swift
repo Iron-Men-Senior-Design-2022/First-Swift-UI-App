@@ -59,16 +59,6 @@ struct ContentView_Previews: PreviewProvider {
                 Image(systemName: "airplane.circle.fill")
                 Text("Discover")
             }
-            
-            //This allows us to create a secondary navigationview accessible through the tabview
-            NavigationView {
-                //An instance of our world view!
-                WorldView()
-            }
-            .tabItem {
-                Image(systemName: "star.fill")
-                Text("Locations")
-            }
         }
     }
 }
