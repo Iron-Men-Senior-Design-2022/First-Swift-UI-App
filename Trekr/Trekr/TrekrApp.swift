@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct TrekrApp: App {
+    //'@StateObject' is just like @State, but for classes and complex types, this allows us to recognize this class instance universally.
+    //In order to use '@StateObject', the class needs to be an ObservableObject
+    @StateObject var locations = Locations()
+    
     var body: some Scene {
         WindowGroup {
             //Add a tab to the bottom for universal use!
@@ -16,7 +20,7 @@ struct TrekrApp: App {
                 //'NavigationView' is how we make a navigation bar at the top!
                 NavigationView {
                     //An instance of our content view!
-                    ContentView(location: Locations().primary)
+                    ContentView(location: locations.primary)
                 }
                 .tabItem {
                     Image(systemName: "airplane.circle.fill")
@@ -33,6 +37,7 @@ struct TrekrApp: App {
                     Text("Locations")
                 }
             }
+            .environmentObject(locations) //This allows the object to be recognized by the enclosing environment.
         }
     }
 }

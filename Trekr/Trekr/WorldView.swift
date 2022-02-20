@@ -10,7 +10,10 @@ import MapKit
 import SwiftUI
 
 struct WorldView: View {
-    //'@State' is a property wrapper that tells SwiftUI that the var region is important to the state of the app.
+    //'@EnvironmentObject' is a property wrapper that tells the world view to look for an environmental object that conforms to the class Locations.
+    @EnvironmentObject var locations: Locations
+    
+    //'@State' is a property wrapper for structs and simple items that tells SwiftUI that the var region is important to the state of the app.
     @State var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
         span: MKCoordinateSpan(latitudeDelta: 40, longitudeDelta: 40)
@@ -18,7 +21,21 @@ struct WorldView: View {
     
     var body: some View {
         //The '$' allows for two-way binding, making it possible to read and write to the this state variable.
-        Map(coordinateRegion: $region).navigationTitle("Locations")
+        Map(coordinateRegion: $region, annotationItems: locations.places) {
+            //This allows us to annotate each item in locations.places, with their images.
+            location in
+            MapAnnotation ( coordinate:
+                CLLocationCoordinate2D (
+                latitude: location.latitude,
+                longitude: location.longitude)) {
+                    Image(location.country)
+                        .resizable()
+                        .cornerRadius(10)
+                        .frame(width: 80, height: 40)
+                        .shadow(radius: 3)
+            }
+        }
+        .navigationTitle("Locations")
     }
 }
 
